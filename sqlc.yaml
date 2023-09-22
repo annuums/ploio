@@ -1,0 +1,46 @@
+version: "2"
+sql:
+  - schema: "users/dba/sqlc/schema.sql"
+    queries: "users/dba/sqlc/query.sql"
+    engine: "mysql"
+    gen:
+      go:
+        package: "usermodel"
+        out: "users/dba"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        emit_result_struct_pointers: true
+  - schema: "projects/dba/sqlc/schema.sql"
+    queries: "projects/dba/sqlc/query.sql"
+    engine: "mysql"
+    gen:
+      go:
+        package: "projectmodel"
+        out: "projects/dba"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        emit_result_struct_pointers: true
+  - schema: "jobs/dba/sqlc/schema.sql"
+    queries: "jobs/dba/sqlc/query.sql"
+    engine: "mysql"
+    gen:
+      go:
+        package: "jobmodel"
+        out: "jobs/dba"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        emit_result_struct_pointers: true
+  - schema: "tasks/dba/sqlc/schema.sql"
+    queries: "tasks/dba/sqlc/query.sql"
+    engine: "mysql"
+    gen:
+      go:
+        package: "taskmodel"
+        out: "tasks/dba"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        emit_result_struct_pointers: true
