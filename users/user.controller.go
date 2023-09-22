@@ -1,7 +1,6 @@
 package users
 
 import (
-	userhandlers "github.com/annuums/ploio/users/handlers"
 	"github.com/annuums/solanum"
 )
 
@@ -17,10 +16,9 @@ func NewUserController() (*solanum.SolaController, error) {
 }
 
 func addHandlers() {
-	getOneHandler := userhandlers.NewUserGetOneHandler()
-	getListHandler := userhandlers.NewUserListHandler()
+	handlers := NewUserHandlers()
 
-	helloWorldController.AddHandler(getOneHandler, getListHandler)
+	helloWorldController.AddHandler(handlers...)
 }
 
 //* Middleware
