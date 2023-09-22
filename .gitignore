@@ -8,6 +8,8 @@
 *.so
 *.dylib
 
+# Ploio Dependent
+.env
 ploio
 
 # Test binary, built with `go test -c`
