@@ -1,13 +1,15 @@
 package users
 
 import (
+	"log"
+
 	"github.com/annuums/solanum"
 	"github.com/gin-gonic/gin"
 )
 
-var userModule solanum.Module
+var userModule *solanum.SolaModule
 
-func NewUserModule(router *gin.RouterGroup, uri string) (solanum.Module, error) {
+func NewUserModule(router *gin.RouterGroup, uri string) (*solanum.SolaModule, error) {
 	if userModule == nil {
 		userModule, _ = solanum.NewModule(router, uri)
 		attachControllers()
@@ -18,9 +20,16 @@ func NewUserModule(router *gin.RouterGroup, uri string) (solanum.Module, error) 
 
 func attachControllers() {
 	//* Attatching Controller Directly
-	ctr, _ := NewUserController()
-	// ctr2, _ := NewAnotherController()
-	//	...
+	var (
+		ctr solanum.Controller
+		err error
+	)
 
-	userModule.SetControllers(ctr)
+	ctr, err = NewUserController()
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	userModule.SetControllers(&ctr)
 }
